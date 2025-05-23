@@ -1,0 +1,270 @@
+﻿import random
+import datetime as dt
+from os import system
+from time import sleep
+
+
+nome = input('Digite o seu nome: ')
+print(f'Olá {nome}!')
+
+
+ra = random.randint(1000000, 9999999)
+print(f'O seu número de matrícula é {ra}')
+
+
+while True:
+   menu = input('Escolha qual opção deseja navegar \n'
+                '[1] - Grade horária\n'
+                '[2] - Acesso aos professores\n'
+                '[3] - Estágios\n'
+                '[4] - Disciplinas\n'
+                '[5] - Mensalidade\n'
+                '[6] - Compra antecipada de lanches \n'
+                '[7] - Sair\n\nEscolha: ')
+
+
+   match menu:
+       case '1':
+           print('ANÁLISE E DESENVOLVIMENTO DE SISTEMAS \n\nGrade horária')
+
+
+           dias = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira']
+           disciplinas = [
+               'Algoritmos e Programação I',
+               'Banco de Dados',
+               'Conceitos de Computação',
+               'Fundamentos de Administração',
+               'Projeto Integrador',
+               'Usabilidade, Interface e UX'
+           ]
+           horarios = [dt.time(18, 0), dt.time(19, 30), dt.time(21, 0)]
+
+
+           for i, dia in enumerate(dias):
+               print(f'{dia}:')
+               for j, hora in enumerate(horarios):
+                   disciplina = disciplinas[(i + j) % len(disciplinas)]
+                   inicio = dt.datetime.combine(dt.date.today(), hora)
+                   fim = inicio + dt.timedelta(minutes=90)
+                   print(f"{disciplina}: {inicio.hour}:{inicio.minute} - {fim.hour}:{fim.minute}")
+               print('-' * 50)
+           sleep(3)
+           system('cls')
+
+
+       case '2':
+           lista = input('Escolha qual professor deseja acessar \n'
+                         '[1] Alberto - Disciplina: Análise de Dados e Estatística\n'
+                         '[2] Yuri - Disciplina: Desenvolvimento de Sistemas para Dispositivos Móveis\n'
+                         '[3] Tamiris - Disciplina: Engenharia e Arquitetura de Software\n'
+                         '[4] Letícia - Disciplina: Gerenciamento de Projetos\n'
+                         '[5] Amanda - Disciplina: Projeto Integrador: desenvolvimento para dispositivos móveis\n'
+                         '[6] Rodrigo Garro - Disciplina: Qualidade de Software\n'
+                         '[7] Sair\n')
+
+
+           prof = [
+               {"nome": "Alberto Francisco Silva", "telefone": "96418-7790", "email": "ProfAlbertofsilva@gmail.com"},
+               {"nome": "Yuri Costa Batista", "telefone": "99233-6789", "email": "ProfyuriCosta9@gmail.com"},
+               {"nome": "Tamiris Ferreira Amorim", "telefone": "91325-1876", "email": "ProfTamirisA@gmail.com"},
+               {"nome": "Letícia Santos Gomes", "telefone": "99976-8554", "email": "Profleticiagomes@gmail.com"},
+               {"nome": "Amanda Leite Deif", "telefone": "92304-0509", "email": "ProfAmandadeif@gmail.com"},
+               {"nome": "Rodrigo Garro Torres", "telefone": "91011-8920", "email": "ProfRodrigoGarro18@gmail.com"},
+           ]
+
+
+           if lista in ['1', '2', '3', '4', '5', '6']:
+               ind = int(lista) - 1
+               professor = prof[ind]
+               print(f"\nProfessor[a] {professor['nome']}:\n"
+                     f"Telefone: {professor['telefone']}\n"
+                     f"Email: {professor['email']}\n")
+           elif lista == '7':
+               print('Saindo...')
+               sleep(3)
+               system('cls')
+               break
+           else:
+               print("Escolha inválida! Tente novamente.")
+
+
+       case '3':
+           estagios = [
+               {
+                   'titulo': 'ESTÁGIO EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS',
+                   'empresa': 'GPA',
+                   'salario': 'R$ 2.000',
+                   'beneficios': ['TRANSPORTE FRETADO', 'SEGURO DE VIDA', 'PLANO ODONTOLÓGICO']
+               },
+               {
+                   'titulo': 'ESTÁGIO EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS',
+                   'empresa': 'ITAÚ',
+                   'salario': 'R$ 2.200',
+                   'beneficios': ['VALE TRANSPORTE', 'VALE ALIMENTAÇÃO: R$ 800', 'SEGURO DE VIDA',
+                                  'PLANO ODONTOLÓGICO']
+               },
+               {
+                   'titulo': 'ESTÁGIO EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS',
+                   'empresa': 'O BOTICÁRIO',
+                   'salario': 'R$ 2.000',
+                   'beneficios': ['TRANSPORTE FRETADO', 'VALE ALIMENTAÇÃO: R$ 1.000', 'SEGURO DE VIDA',
+                                  'PLANO ODONTOLÓGICO']
+               }
+           ]
+
+
+           for index, estagio in enumerate(estagios):
+               print(f"Estágio {index + 1}: {estagio['titulo']}")
+               print(f"Empresa: {estagio['empresa']}")
+               print(f"Salário: {estagio['salario']}")
+               print("Benefícios:")
+               for beneficio in estagio['beneficios']:
+                   print(f"- {beneficio}")
+               print()
+
+
+               candidato = input('DESEJA SE CANDIDATAR? (sim/não): ').lower()
+               if candidato == 'sim':
+                   print('CANDIDATURA ENVIADA!\n BOA SORTE!!!\n')
+                   sleep(3)
+                   system('cls')
+               else:
+                   print('QUE PENA!!!\n')
+                   sleep(3)
+                   system('cls')
+
+
+       case '4':
+           semestre = input('Escolha qual semestre deseja consultar:  \n'
+                            '1 -  1º SEMESTRE \n'
+                            '2 -  2º SEMESTRE \n'
+                            '3 -  3º SEMESTRE \n'
+                            '4 -  4º SEMESTRE \n'
+                            '5 -  5º SEMESTRE \n')
+
+
+           match semestre:
+               case '1':
+                   print('1º Semestre')
+                   dis = ['Algoritmos e Programação I', 'Banco de Dados', 'Conceitos de Computação',
+                          'Evolução da Tecnologia e Sociedade', 'Fundamentos de Administração',
+                          'Projeto Integrador: desenvolvimento de lógica', 'Usabilidade, Interface e UX']
+                   for pos, sem in enumerate(dis[0:5]):
+                       print(f'{pos + 1} - {sem}')
+
+
+               case '2':
+                   print('2º Semestre')
+                   dis2 = ['Algoritmos e Programação II', 'Análise e Desenvolvimento de Sistemas',
+                           'Ética, Cidadania e Sustentabilidade - ações extensionistas', 'Programação Web',
+                           'Projeto Integrador: desenvolvimento estruturado de sistemas']
+                   for pos, sem in enumerate(dis2[0:5]):
+                       print(f'{pos + 1} - {sem}')
+
+
+               case '3':
+                   print('3º Semestre')
+                   dis3 = ['Desenvolvimento de Sistemas Web', 'Estrutura de Dados', 'Infraestrutura de TI',
+                           'Programação Orientada a Objetos',
+                           'Projeto Integrador: desenvolvimento de sistemas orientado à web']
+                   for pos, sem in enumerate(dis3[0:5]):
+                       print(f'{pos + 1} - {sem}')
+
+
+               case '4':
+                   print('4º Semestre')
+                   dis4 = ['Análise de Dados e Estatística', 'Desenvolvimento de Sistemas para Dispositivos Móveis',
+                           'Engenharia e Arquitetura de Software', 'Gerenciamento de Projetos',
+                           'Projeto Integrador: desenvolvimento para dispositivos móveis', 'Qualidade de Software']
+                   for pos, sem in enumerate(dis4[0:5]):
+                       print(f'{pos + 1} - {sem}')
+
+
+               case '5':
+                   print('5º Semestre')
+                   dis5 = ['Administração de Tecnologias da Informação', 'Comunicação, Liderança e Negociação em TI',
+                           'Desenvolvimento em Nuvem e IoT',
+                           'Empreendedorismo, Inovação e Economia Criativa - ações extensionistas',
+                           'Projeto Integrador: análise de soluções integradas para organizações - ações extensionistas',
+                           'Segurança e Auditoria de Sistemas de Informação']
+                   for pos, sem in enumerate(dis5[0:5]):
+                       print(f'{pos + 1} - {sem}')
+
+
+               case _:
+                   print("Opção inválida! Tente novamente.")
+
+
+       case '5':
+           bolsa = input('Você possui bolsas de estudo? (SIM/NAO): ').strip().upper()
+           mensal = float(input('Digite o valor da mensalidade:  '))
+           if bolsa == 'SIM':
+               porcentagem = float(input('Digite de quantos porcentos é a sua bolsa de estudo: ').strip())
+               print(f'Sua bolsa de estudos é de {porcentagem}%')
+               desconto = (mensal * porcentagem) / 100
+               novo = mensal - desconto
+               print(f'O valor da mensalidade com o desconto é: R$ {novo:.2f}')
+           else:
+               print(f'O valor da mensalidade é: R$ {mensal:.2f}')
+           sleep(3)
+           system('cls')
+
+
+       case '6':
+           print('CATÁLOGO DE LANCHES\n')
+           lanches = [
+               {"Cardápio": 1, 'Lanche': 'X- BURGUER', 'Preço': 'R$ 11,80',
+                'Ingredientes': 'Pão, Hambúrguer, Maionese e Queijo'},
+               {"Cardápio": 2, 'Lanche': 'X- SALADA', 'Preço': 'R$ 17,90',
+                'Ingredientes': 'Pão, Queijo, Hambúrguer, Tomate, Alface e Maionese'},
+               {"Cardápio": 3, 'Lanche': 'Misto Quente', 'Preço': 'R$ 9,50', 'Ingredientes': 'Pão, Queijo e Presunto'},
+               {"Cardápio": 4, 'Lanche': 'Chocolate Quente', 'Preço': 'R$ 4,50',
+                'Ingredientes': 'Leite e achocolatado'},
+               {"Cardápio": 5, 'Lanche': 'Café', 'Preço': 'R$ 4,50', 'Ingredientes': 'Água e café solúvel'}
+           ]
+
+
+           print('CATÁLOGO DE LANCHES\n')
+           for lanche in lanches:
+               print(f"Cardápio {lanche['Cardápio']}: {lanche['Lanche']} | {lanche['Preço']}")
+               print(f"Ingredientes: {lanche['Ingredientes']}\n")
+
+
+           conf = input("Deseja realizar um pedido? (sim/não): ").lower()
+
+
+           if conf == 'sim':
+               escolha = int(input("Escolha o número do lanche que deseja comprar (1 a 5): "))
+               if 1 <= escolha <= len(lanches):
+                   escolhido = lanches[escolha - 1]
+                   print(f"\nVocê escolheu o lanche: {escolhido['Lanche']}")
+                   print(f"Preço: {escolhido['Preço']}")
+
+
+                   confirmar = input("Deseja confirmar o pedido? (sim/não): ").strip().lower()
+                   if confirmar == 'sim':
+                       pedido = random.randint(1000, 9999)
+                       print(f"Pedido confirmado!\n"
+                             f"Seu número de pedido para retirada é: {pedido}\n"
+                             f"O seu pedido está sendo preparado!")
+                       sleep(3)
+                       system('cls')
+                   else:
+                       print("Pedido cancelado.")
+                       sleep(3)
+                       system('cls')
+               else:
+                   print("Opção inválida! Por favor, escolha um número entre 1 e 5.")
+                   sleep(3)
+                   system('cls')
+           else:
+               print("Voltando ao menu.")
+
+
+       case '7':
+           print("Saindo...")
+           break
+       case _:
+           print("Opção inválida! Tente novamente.")
+           sleep(3)
+           system('cls')
